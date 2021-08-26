@@ -14,10 +14,24 @@ app.use(express.json());
 // Basic route that sends the user first to the AJAX Page
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
-app.get('/add', (req, res) => res.sendFile(path.join(__dirname, 'add.html')));
+app.get('/tables', (req, res) => res.sendFile(path.join(__dirname, 'tables.html')));
 
-app.get('/add', (req, res) => res.sendFile(path.join(__dirname, 'add.html')));
+app.get('/reservation', (req, res) => res.sendFile(path.join(__dirname, 'reservation.html')));
+
+app.get('/api/reservation', (req, res) => res.json(reservation));
 
 
+// Create new Reservation - takes in JSON input
+app.post('/api/reservation', (req, res) => {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    const newReservation = req.body;
 
-app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
+    // Using a RegEx Pattern to remove spaces from newCharacter
+    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+    newReservation.routeName = newReservation.name.replace(/\s+/g, '').toLowerCase();
+    console.log(newReservation);
+})
+
+
+app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`))
