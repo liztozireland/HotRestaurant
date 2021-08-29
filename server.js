@@ -18,8 +18,6 @@ app.get('/tables', (req, res) => res.sendFile(path.join(__dirname, 'tables.html'
 
 app.get('/reservation', (req, res) => res.sendFile(path.join(__dirname, 'reservation.html')));
 
-app.get('/api/reservation', (req, res) => res.json(reservation));
-
 
 // Create new Reservation - takes in JSON input
 app.post('/api/reservation', (req, res) => {
