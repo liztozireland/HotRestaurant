@@ -30,6 +30,6 @@ app.post('/api/reservation', (req, res) => {
     newReservation.routeName = newReservation.name.replace(/\s+/g, '').toLowerCase();
     console.log(newReservation);
 })
-
+}
 
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`))
